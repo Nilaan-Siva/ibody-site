@@ -1,0 +1,254 @@
+/* i-body.ca — brand stylesheet. Ivory ground, botanical ink, bronze gold. */
+:root{
+  --ivory:#F6F2EB; --panel:#EFE8DC; --card:#FDFBF7;
+  --ink:#26321F; --ink-soft:#5C6353; --gold:#A5804A; --gold-soft:#D8C9A8;
+  --leaf:#3E7B47; --white:#FFFFFF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{
+  background-color:var(--ivory); color:var(--ink);
+  /* faint diagonal light beams, matching the live site's background texture */
+  background-image:
+    linear-gradient(115deg, transparent 40%, rgba(216,201,168,.16) 46%, transparent 52%),
+    linear-gradient(115deg, transparent 66%, rgba(216,201,168,.11) 72%, transparent 78%);
+  background-attachment:fixed;
+  font-family:"EB Garamond", Georgia, serif;
+  font-size:19px; line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%; height:auto; display:block}
+.skip{position:absolute; left:-9999px; top:0; background:var(--ink); color:var(--ivory); padding:10px 18px; z-index:99}
+.skip:focus{left:0}
+
+.label{
+  font-family:"Jost","Helvetica Neue",Arial,sans-serif;
+  text-transform:uppercase; letter-spacing:.22em; font-weight:500;
+  font-size:12px; color:var(--gold);
+}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif; text-wrap:balance; color:var(--ink)}
+a{color:var(--gold)}
+.wrap{max-width:1020px; margin:0 auto; padding:0 24px}
+.prose{max-width:62ch}
+.prose p{margin-bottom:18px; color:var(--ink-soft)}
+.prose h2{font-size:30px; font-weight:600; margin:34px 0 14px}
+.prose ul{margin:0 0 18px 22px; color:var(--ink-soft)}
+.prose li{margin-bottom:8px}
+
+.btn{
+  display:inline-block; text-decoration:none; text-align:center;
+  font-family:"Jost",sans-serif; text-transform:uppercase;
+  letter-spacing:.18em; font-size:12.5px; font-weight:500;
+  padding:15px 30px; transition:opacity .15s ease;
+}
+.btn:hover{opacity:.85}
+.btn:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--ink); outline-offset:3px}
+.btn-gold{background:var(--gold); color:var(--white)}
+.btn-line{border:1px solid var(--ink); color:var(--ink)}
+.btn-sm{padding:13px 22px; font-size:11.5px}
+
+/* header + nav */
+.site-head{border-bottom:1px solid var(--gold-soft); background:var(--ivory); position:relative; z-index:10}
+.head-inner{max-width:1240px; margin:0 auto; padding:18px 24px; display:flex; align-items:center; gap:26px; flex-wrap:wrap}
+.wordmark{font-family:"Cormorant Garamond",serif; font-weight:600; font-size:24px; letter-spacing:.38em; color:var(--ink); text-decoration:none}
+.wordmark.small{font-size:18px}
+.site-nav{display:flex; flex-wrap:wrap; gap:2px; flex:1}
+.nav-item{position:relative}
+.nav-item > a, .nav-item > button{
+  font-family:"Jost",sans-serif; font-size:12.5px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--ink); text-decoration:none; background:none; border:0; cursor:pointer; padding:10px 11px; display:block;
+}
+.nav-item > a[aria-current="page"]{color:var(--gold)}
+.nav-item .menu{
+  display:none; position:absolute; left:0; top:100%; min-width:250px;
+  background:var(--card); border:1px solid var(--gold-soft); padding:10px 0; z-index:20;
+}
+.nav-item.has-menu:hover .menu, .nav-item.has-menu:focus-within .menu{display:block}
+.nav-item .menu a{
+  display:block; padding:9px 18px; text-decoration:none; color:var(--ink);
+  font-family:"Jost",sans-serif; font-size:12.5px; letter-spacing:.08em;
+}
+.nav-item .menu a:hover, .nav-item .menu a[aria-current="page"]{color:var(--gold); background:var(--panel)}
+.head-cta{display:flex; align-items:center; gap:16px; margin-left:auto}
+.head-cta .phone{font-family:"Jost",sans-serif; font-size:13px; letter-spacing:.14em; color:var(--ink); text-decoration:none}
+.head-cta .btn{padding:11px 22px}
+
+/* mobile nav toggle */
+.nav-toggle{position:absolute; opacity:0; pointer-events:none}
+.nav-toggle-btn{display:none; flex-direction:column; justify-content:center; gap:5px; width:26px; height:20px; cursor:pointer; margin-left:auto}
+.nav-toggle-btn span{display:block; height:2px; background:var(--ink)}
+.nav-toggle:focus-visible ~ .nav-toggle-btn{outline:2px solid var(--ink); outline-offset:3px}
+
+@media(max-width:960px){
+  .nav-toggle-btn{display:flex}
+  .site-nav, .head-cta{display:none; width:100%; flex:0 0 100%}
+  .nav-toggle:checked ~ .site-nav, .nav-toggle:checked ~ .head-cta{display:flex}
+  .site-nav{flex-direction:column; gap:0; border-top:1px solid var(--gold-soft); margin-top:14px; padding-top:6px}
+  .nav-item{width:100%}
+  .nav-item > a, .nav-item > button{padding:12px 2px; width:100%; text-align:left}
+  .nav-item .menu{position:static; border:0; background:none; padding:0 0 6px 16px; display:none; min-width:0}
+  .nav-item.has-menu:focus-within .menu{display:block}
+  .nav-item .menu a{padding:8px 0}
+  .head-cta{flex-direction:column; align-items:flex-start; gap:12px; padding:14px 2px 6px; border-top:1px solid var(--gold-soft); margin-top:4px}
+}
+
+/* hero */
+.hero{position:relative; overflow:hidden; text-align:center; padding:84px 24px 76px}
+/* recreated lotus mark */
+.lotus{width:96px; height:auto; margin:0 auto 20px; display:block}
+.lotus *{stroke:var(--leaf); fill:none; stroke-width:2.4}
+/* rotating circular badge, top-left of the hero */
+.rotor{position:absolute; top:26px; left:34px; width:118px; height:118px; opacity:.85;
+  animation:spin 45s linear infinite}
+.rotor text{font-family:"Jost",sans-serif; font-size:8.6px; letter-spacing:.2em; fill:var(--gold); text-transform:uppercase}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:760px){.rotor{display:none}}
+/* hero entrance: elements fade up one after another on load */
+@keyframes fadeUp{from{opacity:0; transform:translateY(16px)} to{opacity:1; transform:none}}
+.hero > *:not(.arches):not(.rotor){animation:fadeUp .7s ease both}
+.hero > *:nth-child(4){animation-delay:.08s}
+.hero > *:nth-child(5){animation-delay:.16s}
+.hero > *:nth-child(6){animation-delay:.24s}
+.hero > *:nth-child(7){animation-delay:.32s}
+.hero > *:nth-child(8){animation-delay:.4s}
+
+/* scroll reveal (classes applied by the small script in the page footer) */
+.will-reveal{opacity:0; transform:translateY(20px); transition:opacity .65s ease, transform .65s ease}
+.revealed{opacity:1; transform:translateY(0)}
+.cards > .will-reveal:nth-child(3n+2){transition-delay:.08s}
+.cards > .will-reveal:nth-child(3n+3){transition-delay:.16s}
+
+/* floating lotus petals in the hero */
+.petals{position:absolute; inset:0; pointer-events:none}
+.petal{position:absolute; width:18px; height:30px; opacity:.35}
+.petal ellipse{stroke:var(--gold); fill:none; stroke-width:1.6}
+.p1{left:16%; top:24%; animation:float 11s ease-in-out infinite}
+.p2{left:82%; top:18%; width:13px; animation:float 14s ease-in-out 2s infinite}
+.p3{left:9%; top:66%; width:15px; animation:float 13s ease-in-out 1s infinite}
+.p4{left:88%; top:60%; animation:float 16s ease-in-out 3s infinite}
+@keyframes float{
+  0%,100%{transform:translateY(0) rotate(-8deg)}
+  50%{transform:translateY(-26px) rotate(10deg)}
+}
+
+/* counters band */
+.counter-band{background:var(--panel); border-top:1px solid var(--gold-soft); border-bottom:1px solid var(--gold-soft); margin:32px 0}
+.counters{display:grid; gap:26px; padding:44px 24px; text-align:center}
+@media(min-width:760px){.counters{grid-template-columns:repeat(4,1fr)}}
+.count{display:block; font-family:"Cormorant Garamond",serif; font-size:clamp(38px,5vw,54px); font-weight:600; color:var(--ink); line-height:1.1}
+.counter .label{display:block; margin-top:6px}
+
+/* gold rule draws itself in when its panel reveals (JS-gated so no-JS stays visible) */
+.panel-ink .inner.will-reveal .rule{transform-origin:left; transform:scaleX(0); transition:transform 1s ease .25s}
+.panel-ink .inner.revealed .rule{transform:scaleX(1)}
+
+@media (prefers-reduced-motion: reduce){
+  .hero > *{animation:none !important}
+  .rotor{animation:none}
+  .petal{animation:none}
+  .card{transition:none}
+  .card:hover{transform:none; box-shadow:none}
+  .will-reveal{opacity:1; transform:none; transition:none}
+  .panel-ink .rule{transform:none; transition:none}
+}
+.arches{position:absolute; left:50%; bottom:-40%; transform:translateX(-50%);
+  width:1300px; height:1300px; border-radius:50%; pointer-events:none;
+  background:radial-gradient(circle, transparent 0 34%, rgba(165,128,74,.16) 34% calc(34% + 1px), transparent calc(34% + 1px) 46%, rgba(165,128,74,.14) 46% calc(46% + 1px), transparent calc(46% + 1px) 58%, rgba(165,128,74,.12) 58% calc(58% + 1px), transparent calc(58% + 1px) 70%, rgba(165,128,74,.10) 70% calc(70% + 1px), transparent calc(70% + 1px));
+}
+.hero > *:not(.arches):not(.rotor){position:relative}
+.hero .label{display:block; margin-bottom:16px; color:var(--ink-soft)}
+.diamond{color:var(--gold); font-size:13px; margin-bottom:22px}
+.hero h1{font-size:clamp(38px,6vw,60px); font-weight:500; line-height:1.08; margin-bottom:18px}
+.hero .sub{font-family:"Cormorant Garamond",serif; font-size:clamp(20px,3vw,25px); font-style:italic; color:var(--gold); margin-bottom:24px}
+.hero p.intro{max-width:58ch; margin:0 auto 34px; color:var(--ink-soft)}
+.hero .cta-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap}
+
+/* sections */
+.section{padding:56px 0}
+.section-head{text-align:center; margin-bottom:48px}
+.section-head .label{display:block; margin-bottom:12px}
+.section-head h2{font-size:clamp(28px,4.5vw,40px); font-weight:500}
+
+.cards{display:grid; gap:24px}
+@media(min-width:680px){.cards.cols-2{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){.cards.cols-3{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){.cards.cols-4{grid-template-columns:repeat(4,1fr)}}
+
+/* stat strip under the hero */
+.stat-bar{background:var(--panel); border-top:1px solid var(--gold-soft); border-bottom:1px solid var(--gold-soft)}
+.stat-bar .wrap{display:grid; gap:24px; padding:30px 24px}
+@media(min-width:760px){.stat-bar .wrap{grid-template-columns:repeat(4,1fr)}}
+.stat-bar .label{display:block; margin-bottom:8px}
+.stat-bar p{font-size:16px; color:var(--ink-soft)}
+.card{
+  /* arch-topped card with faint diagonal gold threads, per the live design */
+  background:
+    linear-gradient(155deg, transparent 45%, rgba(198,178,141,.30) 45.4%, transparent 45.8%),
+    linear-gradient(155deg, transparent 63%, rgba(198,178,141,.22) 63.4%, transparent 63.8%),
+    linear-gradient(180deg, #EDE7DC 0%, var(--card) 58%);
+  border:1px solid var(--gold-soft); border-radius:230px 230px 6px 6px;
+  padding:54px 28px 32px; display:flex; flex-direction:column; gap:12px;
+  align-items:center; text-align:center;
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.card:hover{transform:translateY(-5px); box-shadow:0 14px 34px rgba(38,50,31,.10)}
+.card::before{content:"◇"; color:var(--gold); font-size:15px; line-height:1}
+.card .table-wrap{width:100%}
+.card table{text-align:left}
+.card .label{color:var(--leaf); letter-spacing:.2em}
+.card h3{font-size:25px; font-weight:600; line-height:1.15}
+.card h3 a{color:inherit; text-decoration:none}
+.card h3 a:hover{color:var(--gold)}
+.card p{font-size:17px; color:var(--ink-soft); flex:1}
+.card .link{
+  font-family:"Jost",sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold-soft);
+  align-self:center; padding-bottom:3px;
+}
+.card .link:hover{border-color:var(--gold)}
+
+/* deep green feature panel */
+.panel-ink{background:var(--ink); color:var(--ivory); padding:66px 24px; margin:48px 0}
+.panel-ink .inner{max-width:760px; margin:0 auto}
+.panel-ink .label{color:var(--gold-soft); display:block; margin-bottom:14px}
+.panel-ink h2{color:var(--ivory); font-size:clamp(26px,4vw,36px); font-weight:500; margin-bottom:20px}
+.panel-ink p{color:#D9D6CB; margin-bottom:14px; font-size:18px}
+.panel-ink p strong{color:var(--ivory)}
+.panel-ink .rule{width:64px; height:1px; background:var(--gold); margin-bottom:22px}
+
+/* faq */
+.qa{border-bottom:1px solid var(--gold-soft); padding:26px 0}
+.qa h3{font-size:23px; font-weight:600; margin-bottom:8px}
+.qa p{color:var(--ink-soft); max-width:62ch}
+
+/* page hero (interior pages) */
+.page-hero{text-align:center; padding:64px 24px 50px; border-bottom:1px solid var(--gold-soft)}
+.page-hero .label{display:block; margin-bottom:14px; color:var(--ink-soft)}
+.page-hero h1{font-size:clamp(34px,5vw,52px); font-weight:500; margin-bottom:14px}
+.page-hero .sub{font-family:"Cormorant Garamond",serif; font-size:clamp(19px,2.6vw,23px); font-style:italic; color:var(--gold)}
+
+/* cta band + footer */
+.cta-band{background:var(--panel); border-top:1px solid var(--gold-soft); border-bottom:1px solid var(--gold-soft); text-align:center; padding:64px 24px; margin-top:56px}
+.cta-band h2{font-size:clamp(28px,4.5vw,42px); font-weight:500; margin:12px 0}
+.cta-band p{color:var(--ink-soft); margin-bottom:28px}
+.site-foot{padding:52px 24px 40px}
+.foot-grid{max-width:1020px; margin:0 auto 30px; display:grid; gap:28px}
+@media(min-width:760px){.foot-grid{grid-template-columns:2fr 1fr 1fr 1fr}}
+.foot-grid p{font-size:15.5px; color:var(--ink-soft); margin-top:8px}
+.foot-grid a{color:var(--ink-soft)}
+.foot-line{text-align:center; font-family:"Jost",sans-serif; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft)}
+
+/* search page */
+.search-input{width:100%; padding:15px 18px; font:inherit; color:var(--ink);
+  border:1px solid var(--gold-soft); background:var(--card); margin-bottom:26px}
+.search-input:focus{outline:2px solid var(--ink); outline-offset:2px}
+.search-item{display:block; padding:15px 2px; border-bottom:1px solid var(--gold-soft); text-decoration:none}
+.search-item strong{font-family:"Cormorant Garamond",serif; font-size:22px; font-weight:600; color:var(--ink); display:block}
+.search-item span{color:var(--ink-soft); font-size:15.5px}
+.search-item:hover strong{color:var(--gold)}
+
+/* tables (insurance lists etc.) */
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse; width:100%; font-size:17px}
+th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--gold-soft)}
+th{font-family:"Jost",sans-serif; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold)}
